@@ -1,4 +1,4 @@
-#Plot #1 
+#Plot #2
 
 #Reading the electricity consumption data 
 #Replacing in CSV ? to NA, reading strings(date/time) as characters
@@ -9,11 +9,15 @@ datas<-read.csv("household_power_consumption.txt", sep=";",  na.strings="?",  st
 dat<-datas[datas$Date == "1/2/2007" | datas$Date == "2/2/2007",]
 
 #Open the PNG file device
-png(filename = "plot1.png",
+png(filename = "plot2.png",
     width = 480, height = 480)
 
-#Histogram
-hist(dat$Global_active_power, col="red", xlab="Global Activity Power (kilowatts)", 
-     ylab="Frequency", main="Global Active Power")
+#Weekday plots
+#Convertion of  date/time as character to POSIXlt time class
+dat$timestamp<-with(dat,strptime(paste(Date, Time), format="%d/%m/%Y %H:%M:%S") )
+dat$weekday<-factor(strftime(dat$timestamp, "%a"))
+
+#Plotting with weekdays
+plot(dat$timestamp, dat$Global_active_power, type="l", xlab="", ylab="Global Active Power(kilowatts)")
 
 dev.off()
