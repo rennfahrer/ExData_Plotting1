@@ -15,7 +15,7 @@ png(filename = "plot3.png",
 #Weekday plots
 #Convertion of  date/time as character to POSIXlt time class
 dat$timestamp<-with(dat,strptime(paste(Date, Time), format="%d/%m/%Y %H:%M:%S") )
-dat$weekday<-factor(strftime(dat$timestamp, "%a"))
+# dat$weekday<-factor(strftime(dat$timestamp, "%a"))
 
 #Plotting with weekdays sub metering
 plot(x=dat$timestamp, y=dat[,7], type="l", ylab="Energy sub metering", xlab="")

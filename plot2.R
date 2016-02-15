@@ -15,7 +15,7 @@ png(filename = "plot2.png",
 #Weekday plots
 #Convertion of  date/time as character to POSIXlt time class
 dat$timestamp<-with(dat,strptime(paste(Date, Time), format="%d/%m/%Y %H:%M:%S") )
-dat$weekday<-factor(strftime(dat$timestamp, "%a"))
+# dat$weekday<-factor(strftime(dat$timestamp, "%a"))
 
 #Plotting with weekdays
 plot(dat$timestamp, dat$Global_active_power, type="l", xlab="", ylab="Global Active Power(kilowatts)")
